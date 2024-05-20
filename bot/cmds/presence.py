@@ -67,7 +67,7 @@ class presence(commands.Cog):
     # welcome message
     @commands.Cog.listener(name="on_member_join")
     async def on_member_join(self, member: discord.Member):
-        greetings_quotes = ["Hallo, Hallo,  BAU BAU!", "We hope you have a howl of a day!", "BAU BAU!"]
+        greetings_quotes = ["Hallo, Hallo,  BAU BAU!", "We hope you have a howl of a day!", "BAU BAU!", "How about we get you all nice and fluffy~?"]
         user = f"{member.name}#{member.discriminator}"
         logger.info(f"{user} joined the server")
         guild = self.neko.get_guild(guild_id)
