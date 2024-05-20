@@ -4,6 +4,7 @@ import time
 import logging
 import time
 import requests
+import random
 
 from discord.ext import commands
 from discord import app_commands
@@ -66,6 +67,7 @@ class presence(commands.Cog):
     # welcome message
     @commands.Cog.listener(name="on_member_join")
     async def on_member_join(self, member: discord.Member):
+        greetings_quotes = ["Hallo, Hallo,  BAU BAU!", "We hope you have a howl of a day!", "BAU BAU!"]
         user = f"{member.name}#{member.discriminator}"
         logger.info(f"{user} joined the server")
         guild = self.neko.get_guild(guild_id)
@@ -75,7 +77,8 @@ class presence(commands.Cog):
             await member.kick(reason="Account too young. ")
             await log.send(f"User {user} was kicked by Mococo. Reason: Account too young.")
             return
-        
+
+        quote = random.choice(greetings_quotes)
         niggas = member.guild.member_count
         channel = self.neko.get_channel(welcome_channel_id)
         #api = requests.get(f'https://api.hololewd.com/makegif/?caption={member.name}').json()
@@ -86,7 +89,7 @@ class presence(commands.Cog):
         #embed.set_image(url=api['result'])
         embed.set_footer(text=f"{niggas} Members")
 
-        await channel.send(f"{member.mention}", embed=embed)
+        await channel.send(f"{member.mention} {quote}", embed=embed)
 
     @commands.Cog.listener(name="on_member_remove")
     async def on_member_remove(self, member: discord.Member):
