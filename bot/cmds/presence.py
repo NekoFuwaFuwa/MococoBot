@@ -72,11 +72,12 @@ class presence(commands.Cog):
         logger.info(f"{user} joined the server")
         guild = self.neko.get_guild(guild_id)
         if (time.time() - member.created_at.timestamp() < 1296000): # 15 days
-            log = self.neko.get_channel(logs_channel_id)
-            await member.send(f"You have been kicked from ***{guild.name}***. You can always join back at https://discord.hololewd.com/ . \nReason: Account too young.")
-            await member.kick(reason="Account too young. ")
-            await log.send(f"User {user} was kicked by Mococo. Reason: Account too young.")
-            return
+            if not member.bot: # dont kick bots
+                log = self.neko.get_channel(logs_channel_id)
+                await member.send(f"You have been kicked from ***{guild.name}***. You can always join back at https://discord.hololewd.com/ . \nReason: Account too young.")
+                await member.kick(reason="Account too young. ")
+                await log.send(f"User {user} was kicked by Mococo. Reason: Account too young.")
+                return
 
         quote = random.choice(greetings_quotes)
         niggas = member.guild.member_count
