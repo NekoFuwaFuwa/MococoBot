@@ -29,12 +29,13 @@ class RateSys(commands.Cog):
             return # dont let the bot react to its own message
         
         tenor_links = re.compile(r'https://tenor\.com/view/.*')
-        
-        if message.channel.id == memes_channel_id:
-            if any(message.attachments) or tenor_links.search(message.content):
-                await message.add_reaction('👍')
-                await asyncio.sleep(1)
-                await message.add_reaction('👎')
+
+        for channelID in memes_channel_id:
+            if message.channel.id == channelID:
+                if any(message.attachments) or tenor_links.search(message.content):
+                    await message.add_reaction('👍')
+                    await asyncio.sleep(1)
+                    await message.add_reaction('👎')
 
 async def setup(neko: commands.Bot) -> None:
     await neko.add_cog(RateSys(neko))
