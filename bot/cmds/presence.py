@@ -94,7 +94,17 @@ class presence(commands.Cog):
 
     @commands.Cog.listener(name="on_member_remove")
     async def on_member_remove(self, member: discord.Member):
-        pass
+        if member.id in blkls:
+            return
+
+        user = f"{member.name}#{member.discriminator}"
+        channel = self.neko.get_channel(welcome_channel_id)
+        niggas = member.guild.member_count
+        embed = discord.Embed(title=f"{user} left the server", color=discord.Color.red())
+        embed.set_author(name=f"{user}", icon_url=member.avatar.url)
+        embed.set_footer(text=f"{niggas} Members")
+
+        await channel.send(embed=embed)
 
 async def setup(neko: commands.Bot) -> None:
     await neko.add_cog(presence(neko))
