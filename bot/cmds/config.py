@@ -8,5 +8,6 @@ verify_channel_id = 123
 
 #role id's
 verify_role_id = 123
+admin_role_id = 123
 def token():
     return "123"
