@@ -62,6 +62,8 @@ class Automod(commands.Cog):
                     await message.author.timeout(datetime.timedelta(minutes=5), reason="Spamming invite links")
                     await message.author.send(f"You have been muted for 5 minutes in {message.guild.name}. Reason: Spamming invite links")
                     await message.channel.send(embed=embed, file=get_rand_gif())
+                    await log.send(f"User {message.author.name} [{message.author.id}] has been muted by nekobot. Reason: sending invite links")
+
 
                     warning_count[uid] = 0 # reset after mute
 
