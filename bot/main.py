@@ -6,7 +6,8 @@ import logging
 from discord.ext import commands
 from cmds import config
 
-intents =  discord.Intents.all()
+intents = discord.Intents.all()
+intents.message_content = True
 
 prefix = "./"
 neko = commands.Bot(command_prefix= prefix, intents=intents)
