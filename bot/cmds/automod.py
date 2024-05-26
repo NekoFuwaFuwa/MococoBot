@@ -7,7 +7,6 @@ import datetime
 import random
 
 from discord.ext import commands
-from discord import app_commands
 from .config import *
 
 logger = logging.getLogger(__file__)
@@ -16,7 +15,8 @@ warning_count = {}
 
 gifs = ["cute.gif", "gawrgura.gif"]
 
-get_rand_gif = discord.File(f"../media/{random.choice(gifs)}", filename="vtuber.gif")
+def get_rand_gif():
+    return
 
 def report():
     time.sleep(4)
@@ -32,8 +32,10 @@ class Automod(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message: discord.Message):
-        whitelst = [self.neko.user, admin_role_id] # ignore admins and the bot itself
-        if message.author in whitelst:
+        if message.author == self.neko.user:
+            return
+            
+        if admin_role_id in [role.id for role in message.author.roles]:
             return
         
         log = self.neko.get_channel(logs_channel_id)
@@ -64,7 +66,7 @@ class Automod(commands.Cog):
                     warning_count[uid] = 0 # reset after mute
 
             except Exception as e:
-                await log.send(f"[audomod] Error: {e}")
+                await log.send(f"[automod] Error: {e}")
                     
 
 async def setup(neko: commands.Bot) -> None:
