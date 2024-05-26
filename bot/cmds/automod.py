@@ -61,7 +61,7 @@ class Automod(commands.Cog):
                     embed.add_field(name="Reason", value="Sending Invite links", inline=False)
                     await message.author.timeout(datetime.timedelta(minutes=5), reason="Spamming invite links")
                     await message.author.send(f"You have been muted for 5 minutes in {message.guild.name}. Reason: Spamming invite links")
-                    await message.channel.send(embed=embed, file=get_rand_gif)
+                    await message.channel.send(embed=embed, file=get_rand_gif())
 
                     warning_count[uid] = 0 # reset after mute
 
