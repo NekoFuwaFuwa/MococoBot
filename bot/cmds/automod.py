@@ -16,7 +16,7 @@ warning_count = {}
 gifs = ["cute.gif", "gawrgura.gif"]
 
 def get_rand_gif():
-    return
+    return discord.File(f"../media/{random.choice(gifs)}", filename="vtuber.gif")
 
 def report():
     time.sleep(4)
