@@ -18,7 +18,7 @@ logging.basicConfig(
     level=logging.INFO
 )
 @neko.event
-async def on_read():
+async def on_ready():
     await neko.change_presence(activity=discord.Game("FUWAMOCO"))
     await neko.tree.sync()
     print("uwu")
