@@ -59,7 +59,8 @@ class Antispam(commands.Cog):
         self.user_messages[uid].append(now)
 
         if len(self.user_messages[uid]) == 7 and (now - self.user_messages[uid][0]) <= 10:
-            await handle_mute(message.author, 120, message, log, reason="Spamming")
+            mute_duration = datetime.timedelta(minutes=2)
+            await handle_mute(message.author, mute_duration, message, log, reason="Spamming")
             await purge_messages(message.author, message.channel, 7)
             self.user_messages[uid].clear()  # clear messages after muting
             return
