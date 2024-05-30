@@ -29,7 +29,7 @@ def report():
     time.sleep(4)
     print("Antispam Init")
 
-class Automod(commands.Cog):
+class Antispam(commands.Cog):
     def __init__(self, neko):
         self.neko = neko
         self.user_messages = defaultdict(lambda: deque(maxlen=7))
@@ -66,4 +66,4 @@ class Automod(commands.Cog):
 
 
 async def setup(neko: commands.Bot) -> None:
-    await neko.add_cog(Automod(neko))
+    await neko.add_cog(Antispam(neko))
