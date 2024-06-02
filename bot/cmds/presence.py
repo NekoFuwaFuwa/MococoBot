@@ -71,7 +71,7 @@ class presence(commands.Cog):
         user = f"{member.name}#{member.discriminator}"
         logger.info(f"{user} joined the server")
         guild = self.neko.get_guild(guild_id)
-        if (time.time() - member.created_at.timestamp() < 1296000): # 15 days
+        if (time.time() - member.created_at.timestamp() < required_minimum_time):
             if not member.bot: # dont kick bots
                 log = self.neko.get_channel(logs_channel_id)
                 await member.send(f"You have been kicked from ***{guild.name}***. You can always join back at https://discord.hololewd.com/ . \nReason: Account too young.")
