@@ -77,6 +77,7 @@ class presence(commands.Cog):
                 await member.send(f"You have been kicked from ***{guild.name}***. You can always join back at https://discord.hololewd.com/ . \nReason: Account too young.")
                 await member.kick(reason="Account too young. ")
                 await log.send(f"User {user} was kicked by Mococo. Reason: Account too young.")
+                blkls.append(member.id)
                 return
 
         quote = random.choice(greetings_quotes)
